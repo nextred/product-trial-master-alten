@@ -1,1 +1,13 @@
 //
+.products-list-container {
+    height: calc( 100vh - 210px );
+}
+
+.product-card {
+    &__image-container {
+        height: 200px;
+    }
+    &__image {
+        object-fit: cover;
+    }
+}
