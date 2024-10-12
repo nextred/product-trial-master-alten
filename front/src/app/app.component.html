@@ -6,7 +6,15 @@
         {{ title }}
     </div>
     <div class="p-toolbar-group-end">
-        <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+        <i class="pi pi-shopping-cart" style="font-size: 2rem" >
+            @if ( totalProductsInCart() !== 0 ) {
+                <p-badge
+                    [value]="totalProductsInCart()"
+                    severity="danger"
+                    class="p-overlay-badge"
+                ></p-badge>
+            }
+        </i>
     </div>
 </p-toolbar>
 <p-splitter 
