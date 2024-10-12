@@ -6,7 +6,7 @@
         {{ title }}
     </div>
     <div class="p-toolbar-group-end">
-        <i class="pi pi-shopping-cart" style="font-size: 2rem" >
+        <i routerLink="/shopping-cart" class="pi pi-shopping-cart cursor-pointer pr-4 text-4xl">
             @if ( totalProductsInCart() !== 0 ) {
                 <p-badge
                     [value]="totalProductsInCart()"
