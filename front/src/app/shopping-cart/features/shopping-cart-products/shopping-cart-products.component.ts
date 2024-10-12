@@ -4,7 +4,7 @@ import { ProductsService } from "../../../products/data-access/products.service"
 import { TableModule } from "primeng/table";
 import { CommonModule, DatePipe } from "@angular/common";
 @Component({
-  selector: "app-product-list",
+  selector: "app-shopping-cart",
   templateUrl: "./shopping-cart-products.component.html",
   styleUrls: ["./shopping-cart-products.component.scss"],
   standalone: true,
