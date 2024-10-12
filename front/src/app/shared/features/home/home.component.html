@@ -50,7 +50,8 @@
               icon="pi pi-shopping-cart"
               [raised]="true"
               [outlined]="true"
-              class="block w-full product-card__action"
+              class="block w-full"
+              styleClass="w-full" 
               (onClick)="addProductToCart(product)"
             />
           } @else {
@@ -60,7 +61,8 @@
               icon="pi pi-shopping-cart"
               [raised]="true"
               [outlined]="true"
-              class="block w-full product-card__action"
+              class="block w-full"
+              styleClass="w-full" 
               (onClick)="removeProductFromCart(product)"
             />
           }
