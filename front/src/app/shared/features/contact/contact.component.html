@@ -10,6 +10,14 @@
 						id="email"
 						placeholder="Saisir votre adresse mail"
 					/>
+					<div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-red text-left">
+						<div *ngIf="email.hasError('required')">
+							Email est obligatoire.
+						</div>
+						<div *ngIf="email.hasError('email')">
+							Email doit etre valide
+						</div>
+					</div>
 				</div>
 				<div class="flex flex-column gap-2">
 					<label for="message" class="text-center inline-flex font-semibold">Message</label>
@@ -20,6 +28,14 @@
 						pInputTextarea 
 						placeholder="Saisir votre message"
 					></textarea>
+					<div *ngIf="message.invalid && (message.dirty || message.touched)" class="text-red text-left">
+						<div *ngIf="message.hasError('required')">
+							Message est obligatoire.
+						</div>
+						<div *ngIf="message.hasError('maxlength')">
+							Message ne doit pas passé 300 caractères
+						</div>
+					</div>
 				</div>
 			</form>
 		</ng-template>
@@ -30,6 +46,7 @@
 					severity="info"
 					class="w-full"
 					styleClass="w-full"
+					[disabled]="email.invalid || message.invalid"
 					(onClick)="sendMessage()"
 				/>
 			</div>
