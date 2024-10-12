@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./shared/features/home/home.component";
+import { ContactComponent } from "./shared/features/contact/contact.component";
 
 export const APP_ROUTES: Routes = [
   {
@@ -15,6 +16,10 @@ export const APP_ROUTES: Routes = [
     path: "shopping-cart",
     loadChildren: () =>
       import("./shopping-cart/shopoing-cart.routes").then((m) => m.SHOOPING_CART_ROUTES)
+  },
+  {
+    path: "contact",
+    component: ContactComponent,
   },
   { path: "", redirectTo: "home", pathMatch: "full" },
 ];
