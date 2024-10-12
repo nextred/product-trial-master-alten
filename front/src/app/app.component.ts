@@ -8,7 +8,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelMenuComponent } from "./shared/ui/panel-menu/panel-menu.component";
 import { BadgeModule } from 'primeng/badge';
-import { ShoppingCartService } from "./shopping-cart/shopping-cart.service";
+import { ShoppingCartService } from "./shopping-cart/data-access/shopping-cart.service";
 
 @Component({
   selector: "app-root",

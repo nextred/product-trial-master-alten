@@ -5,7 +5,7 @@ import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
 import { ProductsService } from "app/products/data-access/products.service";
 import { Product } from "app/products/data-access/product.model";
-import { ShoppingCartService } from "app/shopping-cart/shopping-cart.service";
+import { ShoppingCartService } from "app/shopping-cart/data-access/shopping-cart.service";
 
 @Component({
   selector: "app-home",
