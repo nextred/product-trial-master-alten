@@ -39,6 +39,33 @@
           [rounded]="true"
         />
       </div>
+
+      <ng-template pTemplate="footer">
+        <!--- card actions -->
+        <div class="mt-1 w-full">
+          @if ( !isProductInCart( product ) ) {
+            <p-button
+              label="ADD TO CART"
+              severity="info"
+              icon="pi pi-shopping-cart"
+              [raised]="true"
+              [outlined]="true"
+              class="block w-full product-card__action"
+              (onClick)="addProductToCart(product)"
+            />
+          } @else {
+            <p-button
+              label="REMOVE FROM CART"
+              severity="danger"
+              icon="pi pi-shopping-cart"
+              [raised]="true"
+              [outlined]="true"
+              class="block w-full product-card__action"
+              (onClick)="removeProductFromCart(product)"
+            />
+          }
+        </div>
+      </ng-template>
     </p-card>
   }
 </div>

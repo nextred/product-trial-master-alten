@@ -11,3 +11,7 @@
         object-fit: cover;
     }
 }
+
+::ng-deep .product-card__action button {
+    width: 100% !important;
+}
