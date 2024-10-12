@@ -1,5 +1,39 @@
-<p-card class="block m-2 text-center">
-  <p class="m-0">
-    {{ pageTitle }}
-  </p>
-</p-card>
+<div class="p-4">
+	<p-card header="Contactez Nous" class="text-center" >
+		<ng-template pTemplate="content">
+			<form [formGroup]="contactForm">
+				<div class="flex flex-column gap-2 mb-4">
+					<label for="email" class="text-center inline-flex font-semibold">Email</label>
+					<input
+						formControlName="email"
+						pInputText
+						id="email"
+						placeholder="Saisir votre adresse mail"
+					/>
+				</div>
+				<div class="flex flex-column gap-2">
+					<label for="message" class="text-center inline-flex font-semibold">Message</label>
+					<textarea 
+						formControlName="message"
+						rows="5" 
+						cols="30" 
+						pInputTextarea 
+						placeholder="Saisir votre message"
+					></textarea>
+				</div>
+			</form>
+		</ng-template>
+		<ng-template pTemplate="footer">
+			<div class="flex gap-3 mt-1">
+				<p-button
+					label="Envoyer"
+					severity="info"
+					class="w-full"
+					styleClass="w-full"
+					(onClick)="sendMessage()"
+				/>
+			</div>
+		</ng-template>
+		
+	</p-card>
+</div>
