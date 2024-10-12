@@ -1,9 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { IContact } from "app/shared/data-access/contact.model";
+import { ContactService } from "app/shared/data-access/contact.service";
+import { Message } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
+import { MessagesModule } from 'primeng/messages';
 import { InputTextareaModule } from "primeng/inputtextarea";
 
 @Component({
@@ -11,10 +15,12 @@ import { InputTextareaModule } from "primeng/inputtextarea";
   templateUrl: "./contact.component.html",
   styleUrls: ["./contact.component.scss"],
   standalone: true,
-  imports: [ CommonModule, CardModule, ButtonModule, InputTextModule, InputTextareaModule, FormsModule, ReactiveFormsModule ],
+  imports: [ CommonModule, CardModule, ButtonModule, InputTextModule, InputTextareaModule, FormsModule, ReactiveFormsModule, MessagesModule ],
 })
 export class ContactComponent {
-  public readonly pageTitle = "Contactez Nous";  
+  public readonly contactService = inject( ContactService ) 
+
+  public messages = signal<Message[]>([])
 
   public email = new FormControl('', [
     Validators.required,
@@ -33,7 +39,21 @@ export class ContactComponent {
 
   sendMessage() {
     if ( this.email.valid && this.message.valid ) {
-      console.log( this.contactForm.value )
+      this.contactService.send( this.contactForm.value as IContact ).subscribe(
+        () => this.messages.update( value => [ ...value, {
+          closable: true,
+          severity: 'success',
+          summary: 'Demande de contact envoyée avec succès',
+          life: 2000
+        } ]),
+
+        () => this.messages.update( value => [ ...value, {
+          closable: true,
+          severity: 'error',
+          summary: 'Demande de contact a échouée',
+          life: 2000
+        } ]),
+      )
     }
   }
 }
