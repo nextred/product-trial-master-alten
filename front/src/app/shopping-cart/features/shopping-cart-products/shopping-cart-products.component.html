@@ -1,5 +1,11 @@
-<div>
-    <p-table [columns]="tableColumns" [value]="cartProducts()" [tableStyle]="{ 'min-width': '50rem' }">
+<div class="p-4">
+    <p-table
+        [columns]="tableColumns"
+        [value]="cartProducts()"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="5"
+    >
         <ng-template pTemplate="caption">
             <h3 class="text-center">
                 Produits
