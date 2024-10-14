@@ -54,6 +54,6 @@ import { ICartItem } from "./shopping-cart.model";
     private setShoppingCart( cartItems: ICartItem[] ) {
         localStorage.setItem( this.SHOPPING_CART_STORE_NAME, JSON.stringify( cartItems ) )
 
-        this._cartItems.update( cartItems => [ ...cartItems ] )
+        this._cartItems.set( [ ...cartItems ] )
     }
 }
