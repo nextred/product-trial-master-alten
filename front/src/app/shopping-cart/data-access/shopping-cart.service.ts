@@ -41,6 +41,10 @@ import { ICartItem } from "./shopping-cart.model";
         }
     }
 
+    public update( items: ICartItem[] ) {
+        this.setShoppingCart( items )
+    }
+
     public isProductInCart( productId: number ): boolean {
         return !!this._cartItems()?.some( productIem => productIem.productId === productId )
     }

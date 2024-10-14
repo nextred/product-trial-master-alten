@@ -10,6 +10,7 @@
 		"createdAt": 1718114215761,
 		"updatedAt": 1718114215761,
 		"shellId": 15,
+		"quantity": 14,
 		"internalReference": "REF-123-456",
 		"inventoryStatus": "INSTOCK",
 		"rating": 5
@@ -25,6 +26,7 @@
 		"createdAt": 1718114215761,
 		"updatedAt": 1718114215761,
 		"shellId": 15,
+		"quantity": 14,
 		"internalReference": "REF-123-456",
 		"inventoryStatus": "INSTOCK",
 		"rating": 4
@@ -37,6 +39,7 @@
 		"image": "blue-band.jpg",
 		"price": 79,
 		"category": "Fitness",
+		"quantity": 14,
 		"createdAt": 1718114215761,
 		"updatedAt": 1718114215761,
 		"shellId": 15,
@@ -426,6 +429,7 @@
 		"description": "Product Description",
 		"image": "yoga-mat.jpg",
 		"price": 20,
+		"quantity": 14,
 		"category": "Fitness",
 		"createdAt": 1718114215761,
 		"updatedAt": 1718114215761,
