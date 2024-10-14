@@ -40,12 +40,16 @@ export class ContactComponent {
   sendMessage() {
     if ( this.email.valid && this.message.valid ) {
       this.contactService.send( this.contactForm.value as IContact ).subscribe(
-        () => this.messages.update( value => [ ...value, {
-          closable: true,
-          severity: 'success',
-          summary: 'Demande de contact envoyée avec succès',
-          life: 2000
-        } ]),
+        () => {
+          this.messages.update( value => [ ...value, {
+            closable: true,
+            severity: 'success',
+            summary: 'Demande de contact envoyée avec succès',
+            life: 2000
+          } ])
+
+          this.contactForm.reset()
+        },
 
         () => this.messages.update( value => [ ...value, {
           closable: true,
