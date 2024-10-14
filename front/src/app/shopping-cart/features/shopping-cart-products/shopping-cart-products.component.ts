@@ -35,13 +35,13 @@ export class ShoppingCartProductsComponent implements OnInit {
     ) )
 
     public tableColumns = [
-        { header: "Name", field: "name" },
+        { header: "Name", field: "name", sort: true },
         { header: "Catégorie", field: "category" },
         { header: "Déscription", field: "description" },
-        { header: "Quantité", field: 'count', editable: true, type: 'number' },
-        { header: "Prix", field: "price" },
-        { header: "Date d'ajout", field: "addedAt" },
-        { header: "Quantité disponible", field: "quantity" },
+        { header: "Quantité", field: 'count', editable: true, type: 'number', sort: true },
+        { header: "Prix", field: "price", sort: true },
+        { header: "Date d'ajout", field: "addedAt", sort: true },
+        { header: "Quantité disponible", field: "quantity", sort: true },
     ]
 
     updateShoppingCart() {

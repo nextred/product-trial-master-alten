@@ -5,6 +5,8 @@
         [tableStyle]="{ 'min-width': '50rem' }"
         [paginator]="true"
         [rows]="5"
+        sortField="price"
+        [sortOrder]="-1"
     >
         <ng-template pTemplate="caption">
             <h3 class="text-center">
@@ -14,8 +16,13 @@
     
         <ng-template pTemplate="header" let-columns>
             <tr >
-                <th *ngFor="let col of columns" class="font-bold text-base">
-                    {{ col.header }}
+                <th
+                    *ngFor="let col of columns"
+                    [pSortableColumn]="col.field"
+                    [pSortableColumnDisabled]="!col.sort"
+                    class="font-bold text-base"
+                >
+                    {{ col.header }} <p-sortIcon *ngIf="col.sort" [field]="col.field" /> 
                 </th>
             </tr>
         </ng-template>
