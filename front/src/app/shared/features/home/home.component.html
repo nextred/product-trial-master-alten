@@ -3,71 +3,91 @@
       Bienvenue sur {{ appTitle }} !
   </p>
 </p-card>
-<div class="grid align-items-stretch overflow-y-scroll products-list-container" >
-  @for (product of products(); track product) {
-    <p-card class="block mb-2 col-12 md:col-6 lg:col-4 xl:col-3">
-      <div class="product-card__image-container">
-        <!-- product image -->
-        <img
-          [src]="product.image"
-          [alt]="product.name"
-          class="block w-full h-full product-card__image"
-        />
-      </div>
-      <div class="flex flex-wrap justify-content-between align-items-center">
-        <!-- product name && category-->
-        <div>
-          <div class="text-secondary text-sm mb-2 mt-2 w-full"> {{ product.category }} </div>
-          <div class="font-semibold"> {{ product.name }} </div>
+
+@if ( productsPerPage() ) {
+  <div class="grid align-items-stretch overflow-y-scroll products-list-container" >
+    @for (product of productsPerPage(); track product) {
+      <p-card class="block mb-2 col-12 md:col-6 lg:col-4 xl:col-3">
+        <div class="product-card__image-container">
+          <!-- product image -->
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+            class="block w-full h-full product-card__image"
+          />
+        </div>
+        <div class="flex flex-wrap justify-content-between align-items-center">
+          <!-- product name && category-->
+          <div>
+            <div class="text-secondary text-sm mb-2 mt-2 w-full"> {{ product.category }} </div>
+            <div class="font-semibold"> {{ product.name }} </div>
+          </div>
+
+          <!-- product price -->
+          <div class="font-medium text-xl mt-2">{{ '$' + product.price }}</div>
         </div>
 
-        <!-- product price -->
-        <div class="font-medium text-xl mt-2">{{ '$' + product.price }}</div>
-      </div>
+        <div class="mt-2 flex justify-content-between">
+          <!--- product rating -->
+          <span class="p-1 px-2 border-round-xl shadow-1" >
+            <span class="font-medium text-sm"> {{ product.rating }} </span>
+            <i class="pi pi-star-fill text-yellow-500 ml-1"></i>
+          </span>
 
-      <div class="mt-2 flex justify-content-between">
-        <!--- product rating -->
-        <span class="p-1 px-2 border-round-xl shadow-1" >
-          <span class="font-medium text-sm"> {{ product.rating }} </span>
-          <i class="pi pi-star-fill text-yellow-500 ml-1"></i>
-        </span>
-
-        <!--- inventory status tag -->
-        <p-tag
-          [severity]="INVENTORY_STATUS_SEVERTY_MAP[product.inventoryStatus]" 
-          [value]="product.inventoryStatus"
-          [rounded]="true"
-        />
-      </div>
-
-      <ng-template pTemplate="footer">
-        <!--- card actions -->
-        <div class="mt-1 w-full">
-          @if ( !isProductInCart( product ) ) {
-            <p-button
-              label="ADD TO CART"
-              severity="info"
-              icon="pi pi-shopping-cart"
-              [raised]="true"
-              [outlined]="true"
-              class="block w-full"
-              styleClass="w-full" 
-              (onClick)="addProductToCart(product)"
-            />
-          } @else {
-            <p-button
-              label="REMOVE FROM CART"
-              severity="danger"
-              icon="pi pi-shopping-cart"
-              [raised]="true"
-              [outlined]="true"
-              class="block w-full"
-              styleClass="w-full" 
-              (onClick)="removeProductFromCart(product)"
-            />
-          }
+          <!--- inventory status tag -->
+          <p-tag
+            [severity]="INVENTORY_STATUS_SEVERTY_MAP[product.inventoryStatus]" 
+            [value]="product.inventoryStatus"
+            [rounded]="true"
+          />
         </div>
-      </ng-template>
-    </p-card>
-  }
+
+        <ng-template pTemplate="footer">
+          <!--- card actions -->
+          <div class="mt-1 w-full">
+            @if ( !isProductInCart( product ) ) {
+              <p-button
+                label="ADD TO CART"
+                severity="info"
+                icon="pi pi-shopping-cart"
+                [raised]="true"
+                [outlined]="true"
+                class="block w-full"
+                styleClass="w-full" 
+                (onClick)="addProductToCart(product)"
+              />
+            } @else {
+              <p-button
+                label="REMOVE FROM CART"
+                severity="danger"
+                icon="pi pi-shopping-cart"
+                [raised]="true"
+                [outlined]="true"
+                class="block w-full"
+                styleClass="w-full" 
+                (onClick)="removeProductFromCart(product)"
+              />
+            }
+          </div>
+        </ng-template>
+      </p-card>
+    }
+  </div>
+} @else {
+  <div class="flex flex-column justify-content-center products-list-container p-4">
+    <p-skeleton styleClass="mb-4" />
+    <p-skeleton styleClass="mb-4" />
+    <p-skeleton styleClass="mb-4" />
+    <p-skeleton styleClass="mb-4" />
+    <p-skeleton styleClass="mb-4" />
+  </div>
+}
+
+<div *ngIf="totalRecords()" class="flex justify-content-center">
+  <p-paginator 
+    (onPageChange)="onPageChange($event)" 
+    [first]="first()"
+    [rows]="rows" 
+    [totalRecords]="totalRecords()"
+  />
 </div>
